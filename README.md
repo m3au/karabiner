@@ -1,10 +1,10 @@
 # Windows-style Keyboard Configuration for macOS
 
-![Karabiner Elements on Mac Keyboard](bg.png)
-
 After using Windows for over 20 years, switching to macOS meant retraining my muscle memory. The Command key being the primary modifier instead of Control was particularly jarring. This configuration makes macOS keyboard shortcuts behave more like Windows, while adding German character support.
 
 [![JSON](https://img.shields.io/badge/config-JSON-blue.svg)](karabiner.json) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+![Karabiner Elements on Mac Keyboard](bg.png)
 
 ## Features
 
