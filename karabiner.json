@@ -3,7 +3,107 @@
     "profiles": [
         {
             "complex_modifications": {
-                "rules": [
+                "rules": [                  
+                    {
+                        "description": "Swap left_command with left_option",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "left_command",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "left_option" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "left_option",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "left_command" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Swap right_command with right_option",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "right_command",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "right_option" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "right_option",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "right_command" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Ctrl+Tab => Cmd+Tab (Switch application)",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "tab",
+                                    "modifiers": {
+                                        "mandatory": ["option"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "tab",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "tab",
+                                    "modifiers": {
+                                        "mandatory": ["option", "left_shift"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "tab",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Cmd+Tab => Cmd+Alt+0 (Move focus to next window)",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "tab",
+                                    "modifiers": {
+                                        "mandatory": ["left_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "0",
+                                        "modifiers": ["left_command", "left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
                     {
                         "description": "Disable option+u from producing accent mark",
                         "manipulators": [
@@ -842,6 +942,7 @@
                     },
                     {
                         "description": "Ctrl+Esc => Open Launchpad",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -891,6 +992,7 @@
                     },
                     {
                         "description": "Alt+F4 => Cmd+Q (Exit application)",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -1131,27 +1233,6 @@
                         ]
                     },
                     {
-                        "description": "Cmd+Tab => Cmd+Alt+0 (Reassigned command for opening Mission control)",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "tab",
-                                    "modifiers": {
-                                        "mandatory": ["left_command"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "0",
-                                        "modifiers": ["left_command", "left_option"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "Ctrl+(Shift)+Right/left arrow => Alt+(Shift)+Right/left arrow (Move cursor one word with selection and without selection)",
                         "manipulators": [
                             {
@@ -1266,6 +1347,7 @@
                     },
                     {
                         "description": "Ctrl+Up/down arrow => Up/down arrow (Move cursor up/down)",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -1370,6 +1452,7 @@
                     },
                     {
                         "description": "Cmd+L => Logout (CGSession -suspend)",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -1592,43 +1675,6 @@
                         ]
                     },
                     {
-                        "description": "Ctrl+Tab => Cmd+Tab (Switch application)",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "tab",
-                                    "modifiers": {
-                                        "mandatory": ["option"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "tab",
-                                        "modifiers": ["left_command"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "tab",
-                                    "modifiers": {
-                                        "mandatory": ["option", "left_shift"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "tab",
-                                        "modifiers": ["left_command", "left_shift"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "Ctrl+Shift+Esc => Open Activity Monitor",
                         "manipulators": [
                             {
@@ -1707,48 +1753,6 @@
                                         "pointing_button": "button1"
                                     }
                                 ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Swap left_command with left_option",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "left_command",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [{ "key_code": "left_option" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "left_option",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [{ "key_code": "left_command" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Swap right_command with right_option",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "right_command",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [{ "key_code": "right_option" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "right_option",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [{ "key_code": "right_command" }],
                                 "type": "basic"
                             }
                         ]
@@ -2002,37 +2006,6 @@
                                         "modifiers": ["left_shift"]
                                     },
                                     { "key_code": "vk_none" }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Convert Caps Lock with [s] to [ß] (Eszett)",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "caps_lock pressed",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    },
-                                    {
-                                        "keyboard_types": ["ansi", "iso"],
-                                        "type": "keyboard_type_if"
-                                    },
-                                    {
-                                        "input_sources": [{ "language": "^en$" }],
-                                        "type": "input_source_if"
-                                    }
-                                ],
-                                "description": "Caps+s = ß",
-                                "from": { "key_code": "s" },
-                                "to": [
-                                    {
-                                        "key_code": "s",
-                                        "modifiers": ["left_option"]
-                                    }
                                 ],
                                 "type": "basic"
                             }
@@ -2310,37 +2283,6 @@
                                         "modifiers": ["left_shift"]
                                     },
                                     { "key_code": "vk_none" }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Convert Caps Lock with [s] to [ß] (Eszett)",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "caps_lock pressed",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    },
-                                    {
-                                        "keyboard_types": ["ansi", "iso"],
-                                        "type": "keyboard_type_if"
-                                    },
-                                    {
-                                        "input_sources": [{ "language": "^en$" }],
-                                        "type": "input_source_if"
-                                    }
-                                ],
-                                "description": "Caps+s = ß",
-                                "from": { "key_code": "s" },
-                                "to": [
-                                    {
-                                        "key_code": "s",
-                                        "modifiers": ["left_option"]
-                                    }
                                 ],
                                 "type": "basic"
                             }
@@ -3964,6 +3906,9 @@
             ],
             "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
         },
-        { "name": "zero" }
+        {
+            "name": "zero",
+            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
+        }
     ]
 }
